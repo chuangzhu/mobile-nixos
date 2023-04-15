@@ -127,7 +127,6 @@ let
     cp -v ${udev}/lib/udev/rules.d/60-persistent-input.rules $out/
     cp -v ${udev}/lib/udev/rules.d/60-persistent-storage.rules $out/
     cp -v ${udev}/lib/udev/rules.d/70-touchpad.rules $out/
-    cp -v ${udev}/lib/udev/rules.d/80-drivers.rules $out/
     cp -v ${pkgs.lvm2}/lib/udev/rules.d/*.rules $out/
     cp -v ${extraUdevRules} $out/99-extra.rules
 
