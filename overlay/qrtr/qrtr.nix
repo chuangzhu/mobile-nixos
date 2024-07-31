@@ -1,17 +1,20 @@
-{ stdenv, lib, fetchFromGitHub }:
+{ stdenv, lib, fetchFromGitHub, meson, ninja }:
 
-stdenv.mkDerivation {
+stdenv.mkDerivation rec {
   pname = "qrtr";
-  version = "unstable-2020-12-07";
+  version = "1.1";
+
+  nativeBuildInputs = [ meson ninja ];
 
   src = fetchFromGitHub {
-    owner = "andersson";
+    owner = "linux-msm";
     repo = "qrtr";
-    rev = "9dc7a88548c27983e06465d3fbba2ba27d4bc050";
-    hash = "sha256-eJyErfLpIv4ndX2MPtjLTOQXrcWugQo/03Kz4S8S0xw=";
+    rev = "v${version}";
+    hash = "sha256-cPd7bd+S2uVILrFF797FwumPWBOJFDI4NvtoZ9HiWKM=";
   };
 
-  installFlags = [ "prefix=$(out)" ];
+  #installFlags = [ "prefix=$(out)" ];
+  mesonFlags = [ "-Dsystemd-service=disabled" ];
 
   meta = with lib; {
     description = "QMI IDL compiler";
